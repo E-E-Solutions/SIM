@@ -2,10 +2,9 @@ const {
   unAuthenticationHandler,
   unAuthorizedHandler,
 } = require("../errorhandler");
-const { verifyJwtToken } = require("../utils/jwt");
+const { verifyJwtToken } = require("../jwt&cookies/cookie");
 
 const authenticateUser = (req, res, next) => {
-  // console.log(res.cooki);
   const token = req.signedCookies.token;
   if (!token) {
     throw new unAuthenticationHandler(

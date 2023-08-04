@@ -69,9 +69,6 @@ const getSingleByIMSI = async (req, res) => {
   }
   res.status(StatusCodes.OK).json(sim[0]);
 };
-const update = (req, res) => {
-  res.send("update route ");
-};
 
 module.exports = {
   getAll,
@@ -80,5 +77,4 @@ module.exports = {
   getSingleByICCID,
   getSingleByIMSI,
   getSingleByLocation,
-  update,
 };
