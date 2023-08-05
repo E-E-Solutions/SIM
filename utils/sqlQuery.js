@@ -60,9 +60,9 @@ module.exports = class SIM {
         sim.ICCID,
         sim.IMSI,
         sim.location,
+        sim.connectionType,
         sim.clientName,
         sim.companyName,
-        sim.connectionType,
         id,
       ]
     );
