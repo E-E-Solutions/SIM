@@ -19,7 +19,7 @@ const authenticateUser = (req, res, next) => {
   } catch (err) {
     console.log(err);
     throw new unAuthenticationHandler(
-      "You are not authenticated because yor token is not valid"
+      "You are not authenticated because your token is not valid"
     );
   }
 };

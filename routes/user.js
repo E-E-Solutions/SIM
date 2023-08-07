@@ -5,9 +5,15 @@ const {
   login,
   logout,
 } = require("../controllers/userController/registerLogin");
+const {
+  userRoleVerification,
+  authenticateUser,
+} = require("../middlewares/AuthentiateUser");
 
 // register
-router.route("/register").post(register);
+router
+  .route("/register", authenticateUser, userRoleVerification("admin"))
+  .post(register);
 router.route("/login").post(login);
 router.route("/logout").post(logout);
 

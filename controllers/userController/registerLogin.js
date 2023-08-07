@@ -2,7 +2,7 @@ const BadReqErrorHandler = require("../../errorhandler/BadReq");
 const bcrypt = require("bcryptjs");
 const User = require("../../utils/userSqlQuery");
 const { StatusCodes } = require("http-status-codes");
-const userToken = require("../../jwt&cookies/userToken");
+const createTokenUser = require("../../jwt&cookies/userToken");
 const { attachedCookie } = require("../../jwt&cookies/cookie");
 
 // registeration
@@ -35,9 +35,10 @@ const login = async (req, res) => {
   if (!isPasswordCorrect) {
     throw new BadReqErrorHandler("password is not correct");
   }
-  const payload = userToken(user);
-  attachedCookie({ res, payload });
-  res.status(StatusCodes.OK).json({ user: payload });
+  const userToken = createTokenUser(user);
+  console.log(userToken);
+  attachedCookie({ res, user: userToken });
+  res.status(StatusCodes.OK).json({ user: userToken });
 };
 
 // logout
