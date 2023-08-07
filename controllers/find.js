@@ -11,7 +11,7 @@ const getAll = async (req, res) => {
 };
 
 // get single sim by client name
-const getSingleByclientName = async (req, res) => {
+const getByclientName = async (req, res) => {
   const client = req.params.id;
   const sim = await SIM.findWithClient(client);
   if (!sim[0][0]) {
@@ -23,7 +23,7 @@ const getSingleByclientName = async (req, res) => {
 };
 
 // get single sim by company name
-const getSingleBycompanyName = async (req, res) => {
+const getBycompanyName = async (req, res) => {
   const company = req.params.id;
   const sim = await SIM.findWithCompany(company);
   if (!sim[0][0]) {
@@ -35,7 +35,7 @@ const getSingleBycompanyName = async (req, res) => {
 };
 
 // get single sim by location.
-const getSingleByLocation = async (req, res) => {
+const getByLocation = async (req, res) => {
   const location = req.params.id;
   const sim = await SIM.findWithLocation(location);
   if (!sim[0][0]) {
@@ -72,9 +72,9 @@ const getSingleByIMSI = async (req, res) => {
 
 module.exports = {
   getAll,
-  getSingleByclientName,
-  getSingleBycompanyName,
+  getByclientName,
+  getBycompanyName,
   getSingleByICCID,
   getSingleByIMSI,
-  getSingleByLocation,
+  getByLocation,
 };

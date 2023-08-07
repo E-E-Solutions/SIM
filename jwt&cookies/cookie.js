@@ -13,7 +13,7 @@ const attachedCookie = async ({ res, user }) => {
   const token = createJWT({ payload: user });
   const oneDay = 1000 * 60 * 60 * 24;
 
-  res.cookie("acces-token", token, {
+  return await res.cookie("accestoken", token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     secure: process.env.NODE_ENV === "production",
@@ -21,4 +21,4 @@ const attachedCookie = async ({ res, user }) => {
   });
 };
 
-module.exports = { attachedCookie, verifyJwtToken };
+module.exports = { attachedCookie, verifyJwtToken, createJWT };

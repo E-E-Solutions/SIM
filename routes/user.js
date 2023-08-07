@@ -12,8 +12,8 @@ const {
 
 // register
 router
-  .route("/register", authenticateUser, userRoleVerification("admin"))
-  .post(register);
+  .route("/register")
+  .post(authenticateUser, userRoleVerification("admin"), register);
 router.route("/login").post(login);
 router.route("/logout").post(logout);
 

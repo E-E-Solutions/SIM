@@ -3,8 +3,8 @@ const router = express.Router();
 const { create } = require("../controllers/create");
 const {
   getAll,
-  getSingleByclientName,
-  getSingleBycompanyName,
+  getByclientName,
+  getBycompanyName,
 } = require("../controllers/find");
 const { update, deleteField } = require("../controllers/update");
 const { authenticateUser } = require("../middlewares/AuthentiateUser");
@@ -13,9 +13,9 @@ router.route("/create").post(create, authenticateUser);
 // get all
 router.route("/all").get(getAll, authenticateUser);
 // get by client
-router.route("/client/:id").get(getSingleByclientName, authenticateUser);
+router.route("/client/:id").get(getByclientName, authenticateUser);
 // get by company
-router.route("/company/:id").get(getSingleBycompanyName, authenticateUser);
+router.route("/company/:id").get(getBycompanyName, authenticateUser);
 // update by
 router.route("/update/:id").patch(update, authenticateUser);
 // deleteById

@@ -3,7 +3,8 @@ const bcrypt = require("bcryptjs");
 const User = require("../../utils/userSqlQuery");
 const { StatusCodes } = require("http-status-codes");
 const createTokenUser = require("../../jwt&cookies/userToken");
-const { attachedCookie } = require("../../jwt&cookies/cookie");
+const { attachedCookie, createJWT } = require("../../jwt&cookies/cookie");
+const jwt = require("jsonwebtoken");
 
 // registeration
 const register = async (req, res) => {
@@ -36,9 +37,11 @@ const login = async (req, res) => {
     throw new BadReqErrorHandler("password is not correct");
   }
   const userToken = createTokenUser(user);
-  console.log(userToken);
-  attachedCookie({ res, user: userToken });
-  res.status(StatusCodes.OK).json({ user: userToken });
+  const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_LIFE_TIME,
+  });
+  await attachedCookie({ res, user: userToken });
+  res.status(StatusCodes.OK).json({ user: userToken, token: token });
 };
 
 // logout

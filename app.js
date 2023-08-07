@@ -25,7 +25,7 @@ app.use(errorHandlerMiddleware);
 app.use(notFoundHandler);
 // morgan
 app.use(morgan("dev"));
-const PORT = 5000;
+const PORT = 8085;
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
