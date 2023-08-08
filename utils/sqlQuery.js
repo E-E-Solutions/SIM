@@ -1,7 +1,15 @@
 const db = require("../db/sql");
 
 module.exports = class SIM {
-  constructor(ICCID, IMSI, clientName, connectionType, location, companyName) {
+  constructor(
+    ICCID,
+    IMSI,
+    clientName,
+    connectionType,
+    location,
+    companyName,
+    companyId
+  ) {
     this.idSIM;
     this.ICCID = ICCID;
     this.IMSI = IMSI;
@@ -9,12 +17,13 @@ module.exports = class SIM {
     this.connectionType = connectionType;
     this.location = location;
     this.companyName = companyName;
+    this.companyId = companyId;
   }
 
   // save details in sql
   save() {
     return db.execute(
-      "INSERT INTO sim (ICCID, IMSI, clientName, connectionType, location, companyName) VALUES (?, ?, ?, ?, ?, ?)",
+      "INSERT INTO sim (ICCID, IMSI, clientName, connectionType, location, companyName, companyId) VALUES (?, ?, ?, ?, ?, ?, ?)",
       [
         this.ICCID,
         this.IMSI,
@@ -22,6 +31,7 @@ module.exports = class SIM {
         this.connectionType,
         this.location,
         this.companyName,
+        this.companyId,
       ]
     );
   }

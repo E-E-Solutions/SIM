@@ -4,7 +4,7 @@ const {
   register,
   login,
   logout,
-} = require("../controllers/userController/registerLogin");
+} = require("../controllers/auth/registerLogin");
 const {
   userRoleVerification,
   authenticateUser,

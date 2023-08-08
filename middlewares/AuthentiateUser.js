@@ -26,9 +26,10 @@ const authenticateUser = (req, res, next) => {
 
 const userRoleVerification = (...roles) => {
   return (req, res, next) => {
+    console.log(req.user.role);
     if (!roles.includes(req.user.role)) {
       throw new unAuthorizedHandler(
-        "sorry your role is different you are not authorized."
+        "Your role is different you are not authorized."
       );
     }
     next();
