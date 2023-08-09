@@ -4,36 +4,36 @@ const { notFoundHandler } = require("../errorhandler/index");
 const Client = require("../utils/client");
 
 // get all
-// const getAll = async (req, res) => {
-//   const allSims = await SIM.findAll();
-//   res
-//     .status(StatusCodes.OK)
-//     .json({ sim: allSims[0], TotalSim: allSims[0].length });
-// };
-// get alll
 const getAll = async (req, res) => {
-  let allClient = await Client.findAll();
-  allClient = allClient[0];
-  let data = [];
-  try {
-    for (const e of allClient) {
-      let company = e.companyName;
-      let allSims = await SIM.findWithCompany(company);
-      allSims = allSims[0];
-      data.push({
-        company,
-        allSims,
-      });
-    }
-    console.log("data", data);
-    res.status(StatusCodes.OK).json(data);
-  } catch (error) {
-    console.error("An error occurred:", error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Internal Server Error" });
-  }
+  const allSims = await SIM.findAll();
+  res
+    .status(StatusCodes.OK)
+    .json({ sim: allSims[0], TotalSim: allSims[0].length });
 };
+// get alll
+// const getAll = async (req, res) => {
+//   let allClient = await Client.findAll();
+//   allClient = allClient[0];
+//   let data = [];
+//   try {
+//     for (const e of allClient) {
+//       let company = e.companyName;
+//       let allSims = await SIM.findWithCompany(company);
+//       allSims = allSims[0];
+//       data.push({
+//         company,
+//         allSims,
+//       });
+//     }
+//     console.log("data", data);
+//     res.status(StatusCodes.OK).json(data);
+//   } catch (error) {
+//     console.error("An error occurred:", error);
+//     res
+//       .status(StatusCodes.INTERNAL_SERVER_ERROR)
+//       .json({ error: "Internal Server Error" });
+//   }
+// };
 
 // get single sim by client name
 const getByclientName = async (req, res) => {
