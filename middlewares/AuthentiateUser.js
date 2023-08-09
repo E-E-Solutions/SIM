@@ -5,7 +5,7 @@ const {
 const { verifyJwtToken } = require("../jwt&cookies/cookie");
 
 const authenticateUser = (req, res, next) => {
-  const token = req.signedCookies.accestoken;
+  const token = req.signedCookies.accesstoken;
   if (!token) {
     throw new unAuthenticationHandler(
       "You are not authenticated because you did not have token"
