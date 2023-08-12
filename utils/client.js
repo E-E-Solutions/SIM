@@ -22,7 +22,7 @@ module.exports = class client {
   static findAll() {
     return db.execute("SELECT * FROM client");
   }
-  //   static delete() {
-  //     return db.execute("DELETE FROM client");
-  //   }
+  static delete() {
+    return db.execute("DELETE FROM client");
+  }
 };

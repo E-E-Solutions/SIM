@@ -16,4 +16,8 @@ module.exports = class users {
   static findWithEmail(email) {
     return db.execute("SELECT * FROM users WHERE email = ?", [email]);
   }
+
+  static delete() {
+    return db.execute("DELETE FROM users");
+  }
 };

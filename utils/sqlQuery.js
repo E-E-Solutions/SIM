@@ -36,10 +36,12 @@ module.exports = class SIM {
     );
   }
 
-  static findAll(companyName) {
+  static findAll() {
     return db.execute("SELECT * FROM sim");
   }
-
+  static delete() {
+    return db.execute("DELETE FROM sim");
+  }
   static findWithId(id) {
     return db.execute("SELECT * FROM sim WHERE idSIM = ?", [id]);
   }
