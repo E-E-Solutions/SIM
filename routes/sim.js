@@ -5,32 +5,23 @@ const {
   getAll,
   getByclientName,
   getBycompanyName,
+  getSingleByIMSI,
 } = require("../controllers/find");
 const { update, deleteField } = require("../controllers/update");
 const { authenticateUser } = require("../middlewares/AuthentiateUser");
 // create
-// router.route("/create").post(authenticateUser, create);
-// // get all
-// router.route("/all").get(authenticateUser, getAll);
-// // get by client
-// router.route("/client/:id").get(authenticateUser, getByclientName);
-// // get by company
-// router.route("/company/:id").get(authenticateUser, getBycompanyName);
-// // update by
-// router.route("/update/:id").patch(authenticateUser, update);
-// // deleteById
-// router.route("/remove/:id").delete(authenticateUser, deleteField);
-
-router.route("/create").post(create);
+router.route("/create").post(authenticateUser, create);
 // get all
-router.route("/all").get(getAll);
+router.route("/all").get(authenticateUser, getAll);
+//  get by IMSI NUMBER
+router.route("/IMSI/:id").get(authenticateUser, getSingleByIMSI);
 // get by client
-router.route("/client/:id").get(getByclientName);
+router.route("/client/:id").get(authenticateUser, getByclientName);
 // get by company
-router.route("/company/:id").get(getBycompanyName);
+router.route("/company/:id").get(authenticateUser, getBycompanyName);
 // update by
-router.route("/update/:id").patch(update);
+router.route("/update/:id").patch(authenticateUser, update);
 // deleteById
-router.route("/remove/:id").delete(deleteField);
+router.route("/remove/:id").delete(authenticateUser, deleteField);
 
 module.exports = router;
