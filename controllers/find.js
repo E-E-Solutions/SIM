@@ -95,7 +95,23 @@ const getSingleByIMSI = async (req, res) => {
       "No sim found. Make sure u type a correct Location"
     );
   }
-  res.status(StatusCodes.OK).json(sim[0]);
+  sim = sim[0];
+  let data = [];
+  try {
+    for (const e of sim) {
+      let company = e.companyName;
+      // sim = sim[0];
+      data.push({
+        company,
+        sim: e,
+      });
+    }
+    res.status(StatusCodes.OK).json(data);
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
+  }
 };
 
 module.exports = {
