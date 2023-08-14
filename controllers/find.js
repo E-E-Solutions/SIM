@@ -62,7 +62,8 @@ const getSingleByICCID = async (req, res) => {
 // get single sim by IMSI.
 const getSingleByIMSI = async (req, res) => {
   const IMSI = req.params.id;
-  const sim = await SIM.findWithIMSI(IMSI);
+  const len = IMSI.length;
+  const sim = await SIM.findWithIMSI(len, IMSI);
   if (!sim[0][0]) {
     throw new notFoundHandler(
       "No sim found. Make sure u type a correct Location"
