@@ -17,6 +17,8 @@ router.route("/all").get(authenticateUser, getAll);
 router.route("/IMSI/:id").get(authenticateUser, getSingleByIMSI);
 // get by client
 router.route("/client/:id").get(authenticateUser, getByclientName);
+
+router.route("/IMSI/:id").get(authenticateUser, getSingleByIMSI);
 // get by company
 router.route("/company/:id").get(authenticateUser, getBycompanyName);
 // update by
