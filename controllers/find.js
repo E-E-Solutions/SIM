@@ -104,7 +104,7 @@ const getSingleByIMSI = async (req, res) => {
       data.push({
         companyId: e.companyId,
         company,
-        sim: e,
+        allSims: e,
       });
     }
     res.status(StatusCodes.OK).json(data);
