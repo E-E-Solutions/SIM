@@ -8,7 +8,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   };
   if (err.code == "ER_DUP_ENTRY") {
     customApiError.statuscode = StatusCodes.BAD_REQUEST;
-    customApiError.msg = "Already have a sim with same details. ";
+    customApiError.msg = "Already have a sim with same details. " + err.sqlMessage;
   }
 
   return res

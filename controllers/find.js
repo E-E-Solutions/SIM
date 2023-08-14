@@ -63,29 +63,13 @@ const getSingleByICCID = async (req, res) => {
 const getSingleByIMSI = async (req, res) => {
   const IMSI = req.params.id;
   const len = IMSI.length;
-  const sim = await SIM.findWithIMSI(len, IMSI);
+  let sim = await SIM.findWithIMSI(len, IMSI);
   if (!sim[0][0]) {
     throw new notFoundHandler(
       "No sim found. Make sure u type a correct Location"
     );
   }
-  sim = sim[0];
-  let data = [];
-  try {
-    for (const e of sim) {
-      let company = e.companyName;
-      // sim = sim[0];
-      data.push({
-        company,
-        sim: e,
-      });
-    }
-    res.status(StatusCodes.OK).json(data);
-  } catch (error) {
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Internal Server Error" });
-  }
+  res.status(StatusCodes.OK).json(sim[0]);
 };
 
 module.exports = {

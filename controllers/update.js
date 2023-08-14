@@ -2,7 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 const { notFoundHandler } = require("../errorhandler/index");
 const SIM = require("../utils/sqlQuery");
 const BadReqErrorHandler = require("../errorhandler/BadReq");
-
+// update 
 const update = async (req, res) => {
   const id = req.params.id;
   const { ICCID, IMSI, clientName, connectionType, location, companyName } =
@@ -16,7 +16,7 @@ const update = async (req, res) => {
     res.status(StatusCodes.BAD_REQUEST).json(err);
   }
 };
-
+// delete 
 const deleteField = async (req, res) => {
   const id = req.params.id;
   await SIM.deleteById(id)
