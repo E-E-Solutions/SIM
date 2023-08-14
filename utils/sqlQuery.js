@@ -59,8 +59,11 @@ module.exports = class SIM {
   static findWithICCID(ICCID) {
     return db.execute("SELECT * FROM sim WHERE ICCID = ?", [ICCID]);
   }
-  static findWithIMSI(IMSI) {
-    return db.execute("SELECT * FROM sim WHERE IMSI = ?", [IMSI]);
+  static findWithIMSI(len, IMSI) {
+    return db.execute("SELECT * FROM sim WHERE RIGHT(imsi, ?) = ?", [
+      len,
+      IMSI,
+    ]);
   }
 
   static updateById(sim, id) {

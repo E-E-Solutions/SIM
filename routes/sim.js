@@ -5,6 +5,7 @@ const {
   getAll,
   getByclientName,
   getBycompanyName,
+  getSingleByIMSI,
 } = require("../controllers/find");
 const { update, deleteField } = require("../controllers/update");
 const { authenticateUser } = require("../middlewares/AuthentiateUser");
@@ -14,6 +15,8 @@ router.route("/create").post(authenticateUser, create);
 router.route("/all").get(authenticateUser, getAll);
 // get by client
 router.route("/client/:id").get(authenticateUser, getByclientName);
+
+router.route("/IMSI/:id").get(authenticateUser, getSingleByIMSI);
 // get by company
 router.route("/company/:id").get(authenticateUser, getBycompanyName);
 // update by
