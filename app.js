@@ -18,6 +18,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(cookieParser(process.env.JWT_SECRET));
 // routes
+app.get("/test", (rq, res) => {
+  res.send("testing...");
+});
 app.use("/ene/sim/", formRoute);
 app.use("/ene/sim/auth/", authRoute);
 // middlewares

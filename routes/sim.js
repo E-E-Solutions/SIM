@@ -29,5 +29,5 @@ router.route("/company/:id").get(getBycompanyName);
 router.route("/update/:id").patch(update);
 // deleteById
 router.route("/remove/:id").delete(deleteField);
-
+// authentication removed
 module.exports = router;
