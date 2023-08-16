@@ -16,8 +16,8 @@ const attachedCookie = async ({ res, user }) => {
   return await res.cookie("accesstoken", token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
-    // secure: process.env.NODE_ENV === "production", // 'secure' instead of 'Secure'
-    // signed: true,
+    secure: process.env.NODE_ENV === "production", // 'secure' instead of 'Secure'
+    signed: true,
     // sameSite: "same",
     SameSite: "None",
   });

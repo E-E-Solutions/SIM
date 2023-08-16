@@ -30,6 +30,7 @@ const create = async (req, res) => {
   let companyId = await Client.findByCompany(companyName);
   companyId = companyId[0][0].id;
   let sim = new SIM(
+    null,
     ICCID,
     IMSI,
     clientName,

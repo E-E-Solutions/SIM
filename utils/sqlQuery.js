@@ -2,6 +2,7 @@ const db = require("../db/sql");
 
 module.exports = class SIM {
   constructor(
+    idSIM,
     ICCID,
     IMSI,
     clientName,
@@ -10,7 +11,7 @@ module.exports = class SIM {
     companyName,
     companyId
   ) {
-    this.idSIM;
+    this.idSIM = idSIM;
     this.ICCID = ICCID;
     this.IMSI = IMSI;
     this.clientName = clientName;
@@ -46,8 +47,11 @@ module.exports = class SIM {
     return db.execute("SELECT * FROM sim WHERE idSIM = ?", [id]);
   }
 
-  static findWithCompany(companyName) {
-    return db.execute("SELECT * FROM sim WHERE companyName = ?", [companyName]);
+  static findWithCompany(company, pageSize, offSet) {
+    return db.execute(
+      `SELECT * FROM sim WHERE companyName = ?  LIMIT ${pageSize} OFFSET ${offSet}`,
+      [company]
+    );
   }
 
   static findWithClient(clientName) {
@@ -58,11 +62,15 @@ module.exports = class SIM {
     return db.execute("SELECT * FROM sim WHERE location = ?", [location]);
   }
 
-  static findWithICCID(ICCID) {
-    return db.execute("SELECT * FROM sim WHERE ICCID = ?", [ICCID]);
+  static findWithICCID(len, ICCID) {
+    return db.execute("SELECT * FROM sim WHERE RIGHT(iccid, ?) = ?", [
+      len,
+      ICCID,
+    ]);
   }
+
   static findWithIMSI(len, IMSI) {
-    return db.execute("SELECT * FROM sim WHERE RIGHT(imsi, ?) = ?", [
+    return db.execute("SELECT * FROM sim WHERE RIGHT(IMSI, ?) = ?", [
       len,
       IMSI,
     ]);
