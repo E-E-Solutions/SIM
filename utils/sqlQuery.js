@@ -62,7 +62,7 @@ module.exports = class SIM {
     return db.execute("SELECT * FROM sim WHERE location = ?", [location]);
   }
 
-  static findWithIMSI(len, ICCID) {
+  static findWithICCID(len, ICCID) {
     return db.execute("SELECT * FROM sim WHERE RIGHT(iccid, ?) = ?", [
       len,
       ICCID,
@@ -70,7 +70,7 @@ module.exports = class SIM {
   }
 
   static findWithIMSI(len, IMSI) {
-    return db.execute("SELECT * FROM sim WHERE RIGHT(imsi, ?) = ?", [
+    return db.execute("SELECT * FROM sim WHERE RIGHT(IMSI, ?) = ?", [
       len,
       IMSI,
     ]);

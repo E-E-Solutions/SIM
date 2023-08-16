@@ -46,7 +46,7 @@ const getByclientName = async (req, res) => {
 // get single sim by company name
 const getBycompanyName = async (req, res) => {
   const company = req.params.id;
-  const sim = await SIM.findWithCompany(company);
+  const sim = await SIM.findWithCompany(company, 1, 20);
   if (!sim[0][0]) {
     throw new notFoundHandler(
       "No sim found. Make sure u type a correct company name."
@@ -70,12 +70,10 @@ const getByLocation = async (req, res) => {
 // get single sim by ICCID.
 const getSingleByICCID = async (req, res) => {
   const ICCID = req.params.id;
-  const len = IMSI.length;
+  const len = ICCID.length;
   let sim = await SIM.findWithICCID(len, ICCID);
   if (!sim[0][0]) {
-    throw new notFoundHandler(
-      "No sim found. Make sure u type a correct Location"
-    );
+    throw new notFoundHandler("No sim found. Make sure u type a correct ICCID");
   }
   sim = sim[0];
   let data = [];
@@ -103,9 +101,7 @@ const getSingleByIMSI = async (req, res) => {
   const len = IMSI.length;
   let sim = await SIM.findWithIMSI(len, IMSI);
   if (!sim[0][0]) {
-    throw new notFoundHandler(
-      "No sim found. Make sure u type a correct Location"
-    );
+    throw new notFoundHandler("No sim found. Make sure u type a correct IMSI");
   }
   sim = sim[0];
   let data = [];
