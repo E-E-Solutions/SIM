@@ -12,22 +12,22 @@ const {
 const { update, deleteField } = require("../controllers/update");
 const { authenticateUser } = require("../middlewares/AuthentiateUser");
 // create
-router.route("/create").post(authenticateUser, create);
+router.route("/create").post(create);
 // get all
-router.route("/all").get(authenticateUser, getAll);
+router.route("/all").get(getAll);
 //  get by IMSI NUMBER
-router.route("/IMSI/:id").get(authenticateUser, getSingleByIMSI);
+router.route("/IMSI/:id").get(getSingleByIMSI);
 // get by ICCID
-router.route("/ICCID/:id").get(authenticateUser, getSingleByICCID);
+router.route("/ICCID/:id").get(getSingleByICCID);
 // get by client
-router.route("/client/:id").get(authenticateUser, getByclientName);
+router.route("/client/:id").get(getByclientName);
 // get by location
-router.route("/location/:id").get(authenticateUser, getByLocation);
+router.route("/location/:id").get(getByLocation);
 // get by company
-router.route("/company/:id").get(authenticateUser, getBycompanyName);
+router.route("/company/:id").get(getBycompanyName);
 // update by
-router.route("/update/:id").patch(authenticateUser, update);
+router.route("/update/:id").patch(update);
 // deleteById
-router.route("/remove/:id").delete(authenticateUser, deleteField);
+router.route("/remove/:id").delete(deleteField);
 
 module.exports = router;
