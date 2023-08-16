@@ -34,37 +34,89 @@ const getAll = async (req, res) => {
 // get single sim by client name
 const getByclientName = async (req, res) => {
   const client = req.params.id;
-  const sim = await SIM.findWithClient(client);
+  let sim = await SIM.findWithClient(client);
   if (!sim[0][0]) {
     throw new notFoundHandler(
       "No sim found. Make sure u type a correct client name."
     );
   }
-  res.status(StatusCodes.OK).json(sim[0]);
+  sim = sim[0];
+  let data = [];
+  try {
+    for (const e of sim) {
+      let company = e.companyName;
+      data.push({
+        companyId: e.companyId,
+        company,
+        allSims: [e],
+        length: e.length,
+      });
+    }
+    res.status(StatusCodes.OK).json(data);
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
+  }
 };
 
 // get single sim by company name
 const getBycompanyName = async (req, res) => {
   const company = req.params.id;
-  const sim = await SIM.findWithCompany(company, 1, 20);
+  let sim = await SIM.findWithCompany(company, 20, 0);
   if (!sim[0][0]) {
     throw new notFoundHandler(
       "No sim found. Make sure u type a correct company name."
     );
   }
-  res.status(StatusCodes.OK).json(sim[0]);
+
+  sim = sim[0];
+  let data = [];
+  try {
+    for (const e of sim) {
+      let company = e.companyName;
+      data.push({
+        companyId: e.companyId,
+        company,
+        allSims: [e],
+        length: e.length,
+      });
+    }
+    res.status(StatusCodes.OK).json(data);
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
+  }
 };
 
 // get single sim by location.
 const getByLocation = async (req, res) => {
   const location = req.params.id;
-  const sim = await SIM.findWithLocation(location);
+  let sim = await SIM.findWithLocation(location);
   if (!sim[0][0]) {
     throw new notFoundHandler(
       "No sim found. Make sure u type a correct Location"
     );
   }
-  res.status(StatusCodes.OK).json(sim[0]);
+  sim = sim[0];
+  let data = [];
+  try {
+    for (const e of sim) {
+      let company = e.companyName;
+      data.push({
+        companyId: e.companyId,
+        company,
+        allSims: [e],
+        length: e.length,
+      });
+    }
+    res.status(StatusCodes.OK).json(data);
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
+  }
 };
 
 // get single sim by ICCID.
