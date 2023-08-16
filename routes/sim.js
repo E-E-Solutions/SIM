@@ -16,16 +16,16 @@ router.route("/create").post(create);
 // get all
 router.route("/all").get(getAll);
 //  get by IMSI NUMBER
-router.route("/IMSI/:id").get(authenticateUser, getSingleByIMSI);
+router.route("/IMSI/:id").get(getSingleByIMSI);
 // get by ICCID
-router.route("/ICCID/:id").get(authenticateUser, getSingleByICCID);
+router.route("/ICCID/:id").get(getSingleByICCID);
 router.route("/IMSI/:id").get(getSingleByIMSI);
 // get by ICCID
 router.route("/ICCID/:id").get(getSingleByICCID);
 // get by client
-router.route("/client/:id").get(authenticateUser, getByclientName);
+router.route("/client/:id").get(getByclientName);
 // get by location
-router.route("/location/:id").get(authenticateUser, getByLocation);
+router.route("/location/:id").get(getByLocation);
 router.route("/client/:id").get(getByclientName);
 // get by location
 router.route("/location/:id").get(getByLocation);
