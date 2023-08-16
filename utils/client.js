@@ -18,9 +18,10 @@ module.exports = class client {
       companyName,
     ]);
   }
-
-  static findAll() {
-    return db.execute("SELECT * FROM client");
+  static findAll(pageSize, offSet) {
+    return db.execute(
+      `SELECT * FROM client LIMIT ${pageSize} OFFSET ${offSet}`
+    );
   }
   static delete() {
     return db.execute("DELETE FROM client");
