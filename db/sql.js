@@ -1,10 +1,10 @@
 // Create a MySQL connection pool
 const mysql = require("mysql2");
 const pool = mysql.createPool({
-  host: "127.0.0.1",
-  user: "root",
-  database: "test",
-  password: "asad8445569754",
+  host: "server.enggenv.com:8443",
+  user: "dmd_back",
+  database: "dmd",
+  password: "dmdBackPass@123",
   port: 3306,
 });
 
