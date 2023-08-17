@@ -1,12 +1,12 @@
 // Create a MySQL connection pool
 const mysql = require("mysql2");
 const pool = mysql.createPool({
-  host: "https://172.26.0.15",
-  user: "jrDeveloper",
+  host: "172.26.0.15",
+  user: "engg_testingr",
   database: "iot_sim",
-  password: "pa$$ofDatabase#123",
+  password: "HiEES2023#",
   waitForConnections: true,
-  connectionLimit: 20,
+  connectionLimit: 10,
 });
 
 module.exports = pool.promise();
