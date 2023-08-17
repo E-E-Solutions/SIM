@@ -10,6 +10,7 @@ const getAll = async (req, res) => {
   const offSet = (page - 1) * pageSize;
   let allClient = await Client.findAll(pageSize, offSet);
   console.log("allClients", allClient);
+  process.exit();
   allClient = allClient[0];
   let data = [];
   try {
