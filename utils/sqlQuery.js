@@ -48,10 +48,13 @@ module.exports = class SIM {
   }
 
   static findWithCompany(company, pageSize, offSet) {
-    return db.execute(
-      `SELECT * FROM sim WHERE companyName = ?  LIMIT ${pageSize} OFFSET ${offSet}`,
-      [company]
-    );
+    return db
+      .execute(
+        `SELECT * FROM sim WHERE companyName = ?  LIMIT ${pageSize} OFFSET ${offSet}`,
+        [company]
+      )
+      .then()
+      .catch((err) => console.log(err));
   }
 
   static findWithClient(clientName) {

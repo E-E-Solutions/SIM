@@ -9,6 +9,7 @@ const getAll = async (req, res) => {
   const pageSize = parseInt(req.query.size) || 10;
   const offSet = (page - 1) * pageSize;
   let allClient = await Client.findAll(pageSize, offSet);
+  console.log("allClients", allClient);
   allClient = allClient[0];
   let data = [];
   try {

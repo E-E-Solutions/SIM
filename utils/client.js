@@ -22,6 +22,8 @@ module.exports = class client {
     return db.execute(
       `SELECT * FROM client LIMIT ${pageSize} OFFSET ${offSet}`
     );
+    // .then()
+    // .catch((err) => console.log(err));
   }
   static delete() {
     return db.execute("DELETE FROM client");
